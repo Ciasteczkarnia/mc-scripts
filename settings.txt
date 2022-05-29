@@ -1,6 +1,6 @@
 MC_NAME=minecraft
 JAVA=JAVA_VERSION=17
-Xmx=1024M #max
-Xms=2048M #min
+Xmx=2048M #max
+Xms=1024M #min
 DIR=/home/maxio/mc/server/
 JAR_NAME=server.jar
