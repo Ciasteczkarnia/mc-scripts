@@ -1,5 +1,5 @@
 #!/bin/bash
-source /home/maxio/mc/settings.txt
+source /home/maxio/mc/scripts/settings.txt
 
 #START SESJI 
 screen -dmS $MC_NAME
