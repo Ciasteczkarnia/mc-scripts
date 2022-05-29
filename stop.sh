@@ -10,4 +10,4 @@ screen -S $MC_NAME -X stuff "save-on\n"
 sleep 2
 screen -S $MC_NAME -X stuff "stop\n"
 sleep 10
-screen -S $MC_NAME -X stuff "quit\n"
+screen -S $MC_NAME -X stuff "exit\n"
