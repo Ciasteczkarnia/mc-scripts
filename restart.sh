@@ -12,23 +12,22 @@
 source /home/maxio/mc/scripts/settings.txt
 CHECK=`$CHECK_DIR`
 
+
 if [ $CHECK == "on" ]; then
 
-    echo "SERVER JUZ DZIALA"
+    #stop script
+    source "$SCRIPT_DIR/stop.sh"
+    #start script
+    source "$SCRIPT_DIR/start.sh"
+
+    echo "SERVER DZIALA"
 
 elif [ $CHECK == "off" ]; then
 
-    #start sesji
-    screen -dmS $MC_NAME
-    #sprawdzanie miejsca
-    screen -S $MC_NAME -X stuff "cd $DIR\n"
-    #server start
-    screen -S $MC_NAME -X stuff "$JAVA java -Xmx$Xmx -Xms$Xms -jar $JAR_NAME nogui\n"
-
-    echo "SERVER STARTUJE"
+    echo "SERVER NIE DZIALA, NIE MOZNA ZRESTARTOWAC"
 
 else
 
     echo "COS NIE DZIALA"
-
+    
 fi

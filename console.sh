@@ -14,21 +14,14 @@ CHECK=`$CHECK_DIR`
 
 if [ $CHECK == "on" ]; then
 
-    echo "SERVER JUZ DZIALA"
+    screen -r $MC_NAME
 
 elif [ $CHECK == "off" ]; then
 
-    #start sesji
-    screen -dmS $MC_NAME
-    #sprawdzanie miejsca
-    screen -S $MC_NAME -X stuff "cd $DIR\n"
-    #server start
-    screen -S $MC_NAME -X stuff "$JAVA java -Xmx$Xmx -Xms$Xms -jar $JAR_NAME nogui\n"
-
-    echo "SERVER STARTUJE"
+    echo "SERVER NIE DZIALA"
 
 else
 
     echo "COS NIE DZIALA"
-
+   
 fi
