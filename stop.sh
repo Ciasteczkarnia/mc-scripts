@@ -14,28 +14,51 @@ STATUS=`$STATUS_DIR`
 
 if [ $STATUS == "on" ]; then
 
-    screen -S $MC_NAME -X stuff "save-off\n"
-    echo "save-off"
-    sleep 2
+    case $1 in
 
-    screen -S $MC_NAME -X stuff "save-all\n"
-    echo "save-all"
-    sleep 5
+        -f | -force)
 
-    screen -S $MC_NAME -X stuff "save-on\n"
-    echo "save-on"
-    sleep 2
+            screen -S $MC_NAME -X stuff "stop\n"
+            echo "*stop*"
+            sleep 3
 
-    screen -S $MC_NAME -X stuff "stop\n"
-    echo "stop"
-    sleep 10
-
-    #stoping screen session
-    screen -S $MC_NAME -X stuff "exit\n"
-    echo "exit"
+            #stoping screen session
+            screen -S $MC_NAME -X stuff "exit\n"
+            echo "*exit*"
 
 
-    echo "SERVER ZOSTAL ZATRZYMANY"
+            echo "SERVER ZOSTAL ZATRZYMANY PRZYMUSOWO xD"
+
+        ;;
+
+        *)
+
+            screen -S $MC_NAME -X stuff "save-off\n"
+            echo "*save-off*"
+            sleep 2
+
+            screen -S $MC_NAME -X stuff "save-all\n"
+            echo "*save-all*"
+            sleep 5
+
+            screen -S $MC_NAME -X stuff "save-on\n"
+            echo "*save-on*"
+            sleep 2
+
+            screen -S $MC_NAME -X stuff "stop\n"
+            echo "*stop*"
+            sleep 10
+
+            #stoping screen session
+            screen -S $MC_NAME -X stuff "exit\n"
+            echo "*exit*"
+
+
+            echo "SERVER ZOSTAL ZATRZYMANY"
+
+        ;;
+
+    esac
 
 elif [ $STATUS == "off" ]; then
 

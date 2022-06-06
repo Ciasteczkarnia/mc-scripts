@@ -12,22 +12,62 @@
 source /home/maxio/mc/scripts/settings.txt
 STATUS=`$STATUS_DIR`
 
+if [ $STATUS == "on" ]; then #1
 
-if [ $STATUS == "on" ]; then
+        case $1 in
 
-    #stop script
-    source "$SCRIPT_DIR/stop.sh"
+            -f* | f* | -force* | force*)
+
+                #force stop script
+                source $SCRIPT_DIR/stop.sh -f
+
+            ;;
+
+            *)
+
+                #stop script
+                source $SCRIPT_DIR/stop.sh
+
+            ;;
+
+        esac
+        
+
+    STATUS=`$STATUS_DIR` #renew
+
     #start script
-    source "$SCRIPT_DIR/start.sh"
+    if [ $STATUS == "off" ]; then #2
 
-    echo "SERVER DZIALA"
+        case $1$2 in
 
-elif [ $STATUS == "off" ]; then
+            *-n | *n | *-nogui | *nogui)
+
+                #nogui
+                source $SCRIPT_DIR/start.sh -n
+
+            ;;
+
+            *)
+
+                #with gui
+                source $SCRIPT_DIR/start.sh
+
+            ;;
+
+        esac
+
+    else #2
+
+        echo "SERWER NIE URUCHOMIL SIE, COS NIE DZIALA!!!"
+
+    fi #2
+
+elif [ $STATUS == "off" ]; then #1
 
     echo "SERVER NIE DZIALA, NIE MOZNA ZRESTARTOWAC"
 
-else
+else #1
 
     echo "COS NIE DZIALA"
     
-fi
+fi #1

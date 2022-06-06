@@ -10,7 +10,8 @@
 # Xms=1024M #min
 
 STATUS=`screen -ls`
-if echo $STATUS | grep -q minecraft; then
+# if echo $STATUS | grep -q minecraft; then
+if grep -q minecraft <<< "$STATUS" ; then
 #if screen session exists echo on
 echo "on"
 else
