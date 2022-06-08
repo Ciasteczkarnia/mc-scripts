@@ -42,7 +42,7 @@ elif [ $STATUS == "off" ]; then #if1
 
                     sleep 0.5
 
-                    START_TEXT=`tail -n 3 $DIR/logs/latest.log`
+                    START_TEXT=`tail -n 10 $DIR/logs/latest.log`
 
                     if grep -q Done <<< "$START_TEXT" ; then #if2
 
