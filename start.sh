@@ -23,7 +23,7 @@ elif [ $STATUS == "off" ]; then #if1
     #sprawdzanie miejsca
     screen -S $MC_NAME -X stuff "cd $DIR\n"
     #server start
-    screen -S $MC_NAME -X stuff "$JAVA java -Xmx$Xmx -Xms$Xms -jar $JAR_NAME nogui\n"
+    screen -S $MC_NAME -X stuff "$JAVA -Xmx$Xmx -Xms$Xms -jar $JAR_NAME nogui\n"
 
     echo "SERVER STARTUJE"
 
