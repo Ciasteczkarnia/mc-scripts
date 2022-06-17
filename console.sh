@@ -10,13 +10,13 @@
 # Xms=1024M #min
 
 source /home/maxio/mc/scripts/settings.txt
-STATUS=`$STATUS_DIR`
+source $SCRIPT_DIR/status.sh
 
-if [ $STATUS == "on" ]; then
+if [ $ON_OFF == "on" ]; then
 
     screen -r $MC_NAME
 
-elif [ $STATUS == "off" ]; then
+elif [ $ON_OFF == "off" ]; then
 
     echo "SERVER NIE DZIALA"
 

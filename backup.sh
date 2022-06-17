@@ -10,13 +10,13 @@
 # Xms=1024M #min
 
 source /home/maxio/mc/scripts/settings.txt
-STATUS=`$STATUS_DIR`
+source $SCRIPT_DIR/status.sh
 
 screen_cmd () {
     screen -S $MC_NAME -X stuff "$1\n"
 }
 
-if [ $STATUS == "on" ]; then
+if [ $ON_OFF == "on" ]; then
 
         screen_cmd "save-off"
         echo "*save-off*"
@@ -34,7 +34,7 @@ if [ $STATUS == "on" ]; then
         echo "*save-on*"
         sleep 2
 
-elif [ $STATUS == "off" ]; then
+elif [ $ON_OFF == "off" ]; then
 
     echo "SERVER NIE DZIALA"
 

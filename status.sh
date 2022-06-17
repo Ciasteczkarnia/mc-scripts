@@ -9,12 +9,39 @@
 # Xmx=2048M #max
 # Xms=1024M #min
 
-STATUS=`screen -ls`
-# if echo $STATUS | grep -q minecraft; then
-if grep -q minecraft <<< "$STATUS" ; then
+source /home/maxio/mc/scripts/settings.txt
+
+LS_INFO=`screen -ls`
+START_TEXT=`tail -n 10 $DIR/logs/latest.log`
+
+# if screen ls = on
+if grep -q minecraft <<< "$LS_INFO" ; then
 #if screen session exists echo on
-echo "on"
+    ON_OFF="on"
+
+    
 else
 #if screen session exists echo off
-echo "off"
+    ON_OFF="off"
+    
 fi
+
+if grep -q Done <<< "$START_TEXT" ; then
+
+    START="done"
+
+else
+
+    START="error"
+
+fi
+
+case $1 in
+
+    -gui | gui | -g | g)
+
+        echo "SERVER JEST $ON_OFF"
+    
+    ;;
+    
+esac

@@ -10,13 +10,13 @@
 # Xms=1024M #min
 
 source /home/maxio/mc/scripts/settings.txt
-STATUS=`$STATUS_DIR`
+source $SCRIPT_DIR/status.sh
 
-if [ $STATUS == "on" ]; then #if1
+if [ $ON_OFF == "on" ]; then #if1
 
     echo "SERVER JUZ DZIALA"
 
-elif [ $STATUS == "off" ]; then #if1
+elif [ $ON_OFF == "off" ]; then #if1
 
     #start sesji
     screen -dmS $MC_NAME
@@ -41,15 +41,17 @@ elif [ $STATUS == "off" ]; then #if1
                 while true ; do #while1
 
                     sleep 0.5
-
-                    START_TEXT=`tail -n 10 $DIR/logs/latest.log`
-
-                    if grep -q Done <<< "$START_TEXT" ; then #if2
+                    
+                    source $SCRIPT_DIR/status.sh
+                    
+                    if [ $START == "done" ] ; then #if2
 
                         echo -n " `awk -F '[()]' '{printf $2}' <<< "$START_TEXT"`"
                         #newline
                         echo -e
                         break
+
+
 
                     else #if2
 

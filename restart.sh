@@ -10,9 +10,9 @@
 # Xms=1024M #min
 
 source /home/maxio/mc/scripts/settings.txt
-STATUS=`$STATUS_DIR`
+source $SCRIPT_DIR/status.sh
 
-if [ $STATUS == "on" ]; then #1
+if [ $ON_OFF == "on" ]; then #1
 
         case $1 in
 
@@ -33,10 +33,9 @@ if [ $STATUS == "on" ]; then #1
         esac
         
 
-    STATUS=`$STATUS_DIR` #renew
-
+    source $SCRIPT_DIR/status.sh #renew
     #start script
-    if [ $STATUS == "off" ]; then #2
+    if [ $ON_OFF == "off" ]; then #2
 
         case $1$2 in
 
@@ -62,7 +61,7 @@ if [ $STATUS == "on" ]; then #1
 
     fi #2
 
-elif [ $STATUS == "off" ]; then #1
+elif [ $ON_OFF == "off" ]; then #1
 
     echo "SERVER NIE DZIALA, NIE MOZNA ZRESTARTOWAC"
 

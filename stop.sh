@@ -10,9 +10,9 @@
 # Xms=1024M #min
 
 source /home/maxio/mc/scripts/settings.txt
-STATUS=`$STATUS_DIR`
+source $SCRIPT_DIR/status.sh
 
-if [ $STATUS == "on" ]; then
+if [[ $ON_OFF == "on" ]] ; then
 
     case $1 in
 
@@ -60,7 +60,7 @@ if [ $STATUS == "on" ]; then
 
     esac
 
-elif [ $STATUS == "off" ]; then
+elif [[ $ON_OFF == "off" ]] ; then
 
     echo "SERVER JUZ NIE DZIALA"
 
