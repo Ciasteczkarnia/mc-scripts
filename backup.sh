@@ -9,34 +9,37 @@
 # Xmx=2048M #max
 # Xms=1024M #min
 
-source /home/maxio/mc/scripts/settings.txt
-source $SCRIPT_DIR/status.sh
+source "`dirname "$BASH_SOURCE"`/settings.txt"
+source "$SCRIPT_DIR/status.sh"
 
 screen_cmd () {
     screen -S $MC_NAME -X stuff "$1\n"
 }
 
+status_function
 if [ $ON_OFF == "on" ]; then
 
-        screen_cmd "save-off"
-        echo "*save-off*"
-        sleep 2
+    screen_cmd "save-off"
+    echo "*save-off*"
+    sleep 2
 
-        screen_cmd "save-all"
-        echo "*save-all*"
-        sleep 5
+    screen_cmd "save-all"
+    echo "*save-all*"
+    sleep 5
 
-        echo "TRWA TWORZENIE BACKUPU"
-        tar -cpzf $BACKUP_DIR/server-$(date +%F-%H-%M).tar.gz -C $DIR/.. server
-        echo "KONIEC TWORZENIA BACKUPU"
+    echo "TRWA TWORZENIE BACKUPU"
+    tar -cpzf $BACKUP_DIR/server-$(date +%F-%H-%M).tar.gz -C $DIR/.. server
+    echo "KONIEC TWORZENIA BACKUPU"
 
-        screen_cmd "save-on"
-        echo "*save-on*"
-        sleep 2
+    screen_cmd "save-on"
+    echo "*save-on*"
+    sleep 2
 
 elif [ $ON_OFF == "off" ]; then
 
-    echo "SERVER NIE DZIALA"
+    echo "TRWA TWORZENIE BACKUPU"
+    tar -cpzf $BACKUP_DIR/server-$(date +%F-%H-%M).tar.gz -C $DIR/.. server
+    echo "KONIEC TWORZENIA BACKUPU"
 
 else
 

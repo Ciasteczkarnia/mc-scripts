@@ -9,9 +9,10 @@
 # Xmx=2048M #max
 # Xms=1024M #min
 
-source /home/maxio/mc/scripts/settings.txt
-source $SCRIPT_DIR/status.sh
+source "`dirname "$BASH_SOURCE"`/settings.txt"
+source "$SCRIPT_DIR/status.sh"
 
+status_function
 if [ $ON_OFF == "on" ]; then #1
 
         case $1 in

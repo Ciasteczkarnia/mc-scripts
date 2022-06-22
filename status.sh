@@ -9,37 +9,57 @@
 # Xmx=2048M #max
 # Xms=1024M #min
 
-source /home/maxio/mc/scripts/settings.txt
+source "`dirname "$BASH_SOURCE"`/settings.txt"
 
-LS_INFO=`screen -ls`
-START_TEXT=`tail -n 10 $DIR/logs/latest.log`
+data_renew () {
 
-# if screen ls = on
-if grep -q minecraft <<< "$LS_INFO" ; then
-#if screen session exists echo on
-    ON_OFF="on"
+    LS_INFO=`screen -ls`
+    CONSOLE_LOG=`tail -n 10 $DIR/logs/latest.log`
 
-    
-else
-#if screen session exists echo off
-    ON_OFF="off"
-    
-fi
+}
 
-if grep -q Done <<< "$START_TEXT" ; then
+data_renew #always renew on source
 
-    START="done"
 
-else
+status_function () { # $1 - what to find 
 
-    START="error"
+    data_renew
+    if grep -q $MC_NAME <<< "$LS_INFO" ; then
+        
+        ON_OFF="on"
 
-fi
+    else
+
+        ON_OFF="off"
+
+    fi
+}
+
+console_function () { # $1 - what to find 
+
+    data_renew
+    if grep -q "$1" <<< "$CONSOLE_LOG" ; then
+
+        VAR="yes"
+
+    else
+
+        VAR="no"
+
+    fi
+}
+
+
+
+
+
+
 
 case $1 in
 
     -gui | gui | -g | g)
 
+        status_function
         echo "SERVER JEST $ON_OFF"
     
     ;;

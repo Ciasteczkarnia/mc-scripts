@@ -9,9 +9,10 @@
 # Xmx=2048M #max
 # Xms=1024M #min
 
-source /home/maxio/mc/scripts/settings.txt
-source $SCRIPT_DIR/status.sh
+source "`dirname "$BASH_SOURCE"`/settings.txt"
+source "$SCRIPT_DIR/status.sh"
 
+status_function
 if [ $ON_OFF == "on" ]; then #if1
 
     echo "SERVER JUZ DZIALA"
@@ -20,9 +21,9 @@ elif [ $ON_OFF == "off" ]; then #if1
 
     #start sesji
     screen -dmS $MC_NAME
-    #sprawdzanie miejsca
+    # #sprawdzanie miejsca
     screen -S $MC_NAME -X stuff "cd $DIR\n"
-    #server start
+    # #server start
     screen -S $MC_NAME -X stuff "$JAVA -Xmx$Xmx -Xms$Xms -jar $JAR_NAME nogui\n"
 
     echo "SERVER STARTUJE"
@@ -42,16 +43,13 @@ elif [ $ON_OFF == "off" ]; then #if1
 
                     sleep 0.5
                     
-                    source $SCRIPT_DIR/status.sh
-                    
-                    if [ $START == "done" ] ; then #if2
+                    console_function "Done"
+                    if [ $VAR == "yes" ] ; then #if2
 
-                        echo -n " `awk -F '[()]' '{printf $2}' <<< "$START_TEXT"`"
+                        echo -n " `awk -F '[()]' '{printf $2}' <<< "$CONSOLE_LOG"`"
                         #newline
                         echo -e
                         break
-
-
 
                     else #if2
 

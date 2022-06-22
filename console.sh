@@ -9,18 +9,20 @@
 # Xmx=2048M #max
 # Xms=1024M #min
 
-source /home/maxio/mc/scripts/settings.txt
-source $SCRIPT_DIR/status.sh
+source "`dirname "$BASH_SOURCE"`/settings.txt"
+source "$SCRIPT_DIR/status.sh"
 
-if [ $ON_OFF == "on" ]; then
+status_function
+if [[ $ON_OFF == "on" ]]; then
 
     screen -r $MC_NAME
 
-elif [ $ON_OFF == "off" ]; then
+elif [[ $ON_OFF == "off" ]]; then
 
     echo "SERVER NIE DZIALA"
 
 else
+
 
     echo "COS NIE DZIALA"
    

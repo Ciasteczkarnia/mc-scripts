@@ -1,7 +1,7 @@
 #!/bin/bash
 
-source /home/maxio/mc/scripts/settings.txt
-source $SCRIPT_DIR/status.sh
+source "`dirname "$BASH_SOURCE"`/settings.txt"
+source "$SCRIPT_DIR/status.sh"
 
 LAST_VERSION=`curl -s 'GET' "https://api.papermc.io/v2/projects/paper/versions/1.19" -H 'accept: application/json' | jq -r '.builds | max'`
 SHA256_NEW=`curl -s 'GET' "https://api.papermc.io/v2/projects/paper/versions/1.19/builds/$LAST_VERSION" -H 'accept: application/json' | jq -r '.downloads.application.sha256'`
@@ -27,7 +27,7 @@ function update () {
     fi
 }
 
-
+status_function
 if [[ $ON_OFF == "on" ]]; then
 
     case $1 in #case1
